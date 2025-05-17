@@ -1,0 +1,93 @@
+{
+  "name": "build-to-earn",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DIY 크래프팅 월드 - Build-to-Earn 게임 플랫폼",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "game-server",
+    "smart-contracts",
+    "season-management",
+    "security-system",
+    "analytics-system",
+    "mobile-system",
+    "ai-system"
+  ],
+  "scripts": {
+    "start": "lerna run start --parallel",
+    "dev": "lerna run dev --parallel",
+    "build": "lerna run build",
+    "test": "lerna run test --parallel",
+    "lint": "lerna run lint --parallel",
+    "clean": "lerna clean",
+    "setup": "npm install && lerna bootstrap",
+    "postinstall": "lerna bootstrap",
+    "prepare": "husky install",
+    "dev:frontend": "lerna run dev --scope=frontend",
+    "dev:backend": "lerna run dev --scope=backend",
+    "dev:game-server": "lerna run dev --scope=game-server",
+    "dev:contracts": "lerna run dev --scope=smart-contracts",
+    "deploy:dev": "./scripts/deploy.sh development",
+    "deploy:prod": "./scripts/deploy.sh production",
+    "deploy:staging": "./scripts/deploy.sh staging",
+    "security:scan": "./scripts/security-scan.sh",
+    "performance:test": "./scripts/performance-test.sh",
+    "season:init": "./scripts/season-init.sh",
+    "backup": "./scripts/backup.sh",
+    "disaster:recovery": "./scripts/disaster-recovery.sh"
+  },
+  "keywords": [
+    "blockchain",
+    "web3",
+    "nft",
+    "game",
+    "metaverse",
+    "build-to-earn",
+    "sandbox",
+    "crafting"
+  ],
+  "author": "DIY 크래프팅 월드 팀",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/build-to-earn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/build-to-earn/issues"
+  },
+  "homepage": "https://github.com/your-org/build-to-earn#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.0",
+    "@commitlint/config-conventional": "^17.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "lerna": "^7.1.4",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md,mdx}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
